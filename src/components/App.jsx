@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import ToDoItem from "./ToDoItem";
 import DoneItem from "./DoneItem";
 import InputArea from "./InputArea";
-import Refresh from "./Refresh";
+import Reset from "./Reset";
 
 function App() {
   
@@ -34,13 +34,15 @@ function App() {
     setItems(temp);
   }
 
-  function refresh(){
+  function reset(){
     setItems([]);
     setDoneItems([]);
     sessionStorage.clear();
   }
 
   return (
+    <div>
+    <Reset reset={reset} />
     <div className="container">
       <div className="heading">
         <h1>To-Do List</h1>
@@ -66,7 +68,7 @@ function App() {
           ))}
         </ul>
       </div>
-      <Refresh refresh={refresh} />
+    </div>
     </div>
   );
 }

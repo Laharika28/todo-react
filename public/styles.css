@@ -83,12 +83,14 @@ li {
   text-decoration: line-through;
 }
 
-.refresh{
+.reset{
   position: absolute;
-  bottom: 10px;
-  right: 20px;
+  top: 25px; 
+  right: 30%;
   font-size: small;
   border-radius: 5px;
   border: 2px solid hsl(198, 1%, 29%);
+  box-shadow: 3px 3px 4px 2px #00000040;
+  background: #fff;
   padding: 0.5rem 1rem;
 }
