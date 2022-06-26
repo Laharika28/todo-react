@@ -13,6 +13,7 @@ body {
 }
 
 .container {
+  position: relative;
   width: 100%;
   height: auto;
   min-height: 500px;
@@ -80,4 +81,14 @@ li {
 
 .done{
   text-decoration: line-through;
+}
+
+.refresh{
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  font-size: small;
+  border-radius: 5px;
+  border: 2px solid hsl(198, 1%, 29%);
+  padding: 0.5rem 1rem;
 }

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ToDoItem from "./ToDoItem";
 import DoneItem from "./DoneItem";
 import InputArea from "./InputArea";
+import Refresh from "./Refresh";
 
 function App() {
   
@@ -16,23 +17,27 @@ function App() {
   }
 
   function deleteItem(id) {
+    
     const tempArr = items;
-    tempArr.filter((item,index) => {
+    
+    const temp = tempArr.filter((item,index) => {
+      if(index === id){
+        setDoneItems((prevDoneItems) => {
+          sessionStorage.setItem('doneList',JSON.stringify([item , ...prevDoneItems]));
+          return [item , ...prevDoneItems];
+        });
+      }
       return index !== id;
     });
-    setItems((prevItems) => {
-      return prevItems.filter((item, index) => {
-        if(index === id){
-          setDoneItems((prevDoneItems) => {
-            sessionStorage.setItem('doneList',JSON.stringify([item , ...prevDoneItems]));
-            return [item , ...prevDoneItems];
-          });
-          console.log(doneItems);
-        }
-        return index !== id;
-      });
-    });
-    sessionStorage.setItem('todoList',JSON.stringify(tempArr));
+
+    sessionStorage.setItem('todoList',JSON.stringify(temp));
+    setItems(temp);
+  }
+
+  function refresh(){
+    setItems([]);
+    setDoneItems([]);
+    sessionStorage.clear();
   }
 
   return (
@@ -61,6 +66,7 @@ function App() {
           ))}
         </ul>
       </div>
+      <Refresh refresh={refresh} />
     </div>
   );
 }
